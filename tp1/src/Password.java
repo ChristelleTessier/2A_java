@@ -2,6 +2,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -100,9 +101,14 @@ public class Password {
      */
     public static HashMap<String, Boolean> checkPasswordsList(ArrayList<String> passwords) {
 
-        // Code here
+        HashMap<String, Boolean> reponses = new HashMap<>();
 
-        return null;
+        for (String password : passwords){
+            boolean reponse = isStrongPassword(password);
+            reponses.put(password,reponse);
+        }
+
+        return reponses;
     }
 
     /**
