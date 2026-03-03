@@ -1,10 +1,13 @@
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class Password {
     /**
@@ -124,10 +127,51 @@ public class Password {
      * @return A randomly generated password that meets the security criteria.
      */
     public static String generatePassword(int nbCar) {
+        
+        if (nbCar <4){
+            System.out.println("nbCar insuffisant");
+            return null;
+        }
 
-        // Code here
+        String lettre ="abcdefghijklmnopqrstuvwxyz";
+        String list_spec = "!#$%&'*+,-./:;<=>?@_{¦}~()";
+        
+        Random rand = new Random();
+    
+        String min = String.valueOf(lettre.charAt(rand.nextInt(26)));
+        System.out.println("min "+min);
+        String max = String.valueOf(lettre.charAt(rand.nextInt(26)));
+        System.out.println("max"+max);
+        max = max.toUpperCase();
+        String nb = String.valueOf(rand.nextInt(0,9));
+        String specsString = String.valueOf(list_spec.charAt(rand.nextInt(26)));
+        String password = min+max+nb+specsString;
+        
 
-        return null;
+        for (int i=4; i<nbCar+1;i++){
+            int met = i%4;
+            String new_carac;
+            if (i==0){
+                new_carac = String.valueOf(lettre.charAt(rand.nextInt(26)));
+            }
+            else if (i==1){
+                new_carac = String.valueOf(lettre.charAt(rand.nextInt(26)));
+                new_carac = new_carac.toUpperCase();
+            }
+            else if (i==2){
+                new_carac = String.valueOf(rand.nextInt(0,9));
+            }
+            else {
+                new_carac = String.valueOf(list_spec.charAt(rand.nextInt(26)));
+            }
+
+            password = password + new_carac;
+            ArrayList<String> list = new ArrayList<>(Arrays.asList(password.split("/")));
+            Collections.shuffle(list);
+            password = list.toString();
+        }
+
+        return password;
     }
 
     public static void main(String[] args) {
