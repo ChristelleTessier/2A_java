@@ -40,8 +40,13 @@ public class Password {
      */
     public static String bruteForce6Digit(String targetHash) {
 
-        // Code here
-
+        for (int i = 0;i<1000000;i++){
+            String test = String.format("%06d", i);
+            String test_hash = hashPassword(test);
+            if (test_hash.equals(targetHash)){
+                return test;
+            }
+        }
         return null;
     }
 
@@ -61,7 +66,26 @@ public class Password {
      */
     public static boolean isStrongPassword(String password) {
 
-        // Code here
+
+        
+        int size=password.length();
+        String small_test = password.toLowerCase();
+        String big_test = password.toUpperCase();
+        if (size < 12)
+            {return false;}
+        else if (password.equals(small_test))
+            {return false;}
+        else if (password.equals(big_test))
+            {return false;}
+        else if (password.contains(" "))
+            {return false;}
+    
+        for (int i=0; i<10; i++)
+        { if (password.contains(String.valueOf(i)))
+            {return true;}
+
+        }
+
 
         return false;
     }
@@ -127,6 +151,8 @@ public class Password {
                 System.out.println("abcdef123456  -> " + isStrongPassword("abcdef123456"));
                 System.out.println("AbCdEf123456  -> " + isStrongPassword("AbCdEf123456"));
                 System.out.println("AbCdEf 123456 -> " + isStrongPassword("AbCdEf 123456"));
+                System.out.println("AbCdEfAbcdfAbc -> " + isStrongPassword("AbCdEfAbcdfAbc"));
+                System.out.println("AbCdE12fAbcdfAbc -> " + isStrongPassword("AbCdE12fAbcdfAbc"));
                 break;
 
             case "3":
