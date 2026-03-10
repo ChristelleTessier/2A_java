@@ -5,6 +5,9 @@ public abstract class Item {
     protected int year;
     protected int pageCount;
 
+    /**
+     * Constructs a new Item.
+     */
     public Item(String title, int year, int pageCount) {
         this.title = title;
         this.year = year;

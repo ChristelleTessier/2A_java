@@ -22,7 +22,7 @@ public class Magazine extends Item {
         this.issueNumber = issueNumber;
     }
 
-        @Override
+    @Override
     public String toString() {
         return String.format("Book %s written in %s", this.title, this.year);
     }

@@ -16,6 +16,8 @@ public class Library {
     // Attributes
     private String name;
     private ArrayList<Item> items;
+    private ArrayList<Loan> actifsLoans;
+    private ArrayList<Loan> completedLoans;
 
     /**
      * Construit une nouveau objet.
@@ -23,6 +25,8 @@ public class Library {
     public Library(String name) {
         this.name = name;
         this.items = new ArrayList<Item>();
+        this.actifsLoans = null;
+        this.completedLoans = null;
     }
 
     /**
