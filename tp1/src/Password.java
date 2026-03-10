@@ -1,13 +1,9 @@
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 public class Password {
     /**
@@ -44,13 +40,8 @@ public class Password {
      */
     public static String bruteForce6Digit(String targetHash) {
 
-        for (int i = 0;i<1000000;i++){
-            String test = String.format("%06d", i);
-            String test_hash = hashPassword(test);
-            if (test_hash.equals(targetHash)){
-                return test;
-            }
-        }
+        // Code here
+
         return null;
     }
 
@@ -70,26 +61,7 @@ public class Password {
      */
     public static boolean isStrongPassword(String password) {
 
-
-        
-        int size=password.length();
-        String small_test = password.toLowerCase();
-        String big_test = password.toUpperCase();
-        if (size < 12)
-            {return false;}
-        else if (password.equals(small_test))
-            {return false;}
-        else if (password.equals(big_test))
-            {return false;}
-        else if (password.contains(" "))
-            {return false;}
-    
-        for (int i=0; i<10; i++)
-        { if (password.contains(String.valueOf(i)))
-            {return true;}
-
-        }
-
+        // Code here
 
         return false;
     }
@@ -104,14 +76,9 @@ public class Password {
      */
     public static HashMap<String, Boolean> checkPasswordsList(ArrayList<String> passwords) {
 
-        HashMap<String, Boolean> reponses = new HashMap<>();
+        // Code here
 
-        for (String password : passwords){
-            boolean reponse = isStrongPassword(password);
-            reponses.put(password,reponse);
-        }
-
-        return reponses;
+        return null;
     }
 
     /**
@@ -127,51 +94,10 @@ public class Password {
      * @return A randomly generated password that meets the security criteria.
      */
     public static String generatePassword(int nbCar) {
-        
-        if (nbCar <4){
-            System.out.println("nbCar insuffisant");
-            return null;
-        }
 
-        String lettre ="abcdefghijklmnopqrstuvwxyz";
-        String list_spec = "!#$%&'*+,-./:;<=>?@_{¦}~()";
-        
-        Random rand = new Random();
-    
-        String min = String.valueOf(lettre.charAt(rand.nextInt(26)));
-        System.out.println("min "+min);
-        String max = String.valueOf(lettre.charAt(rand.nextInt(26)));
-        System.out.println("max"+max);
-        max = max.toUpperCase();
-        String nb = String.valueOf(rand.nextInt(0,9));
-        String specsString = String.valueOf(list_spec.charAt(rand.nextInt(26)));
-        String password = min+max+nb+specsString;
-        
+        // Code here
 
-        for (int i=4; i<nbCar+1;i++){
-            int met = i%4;
-            String new_carac;
-            if (i==0){
-                new_carac = String.valueOf(lettre.charAt(rand.nextInt(26)));
-            }
-            else if (i==1){
-                new_carac = String.valueOf(lettre.charAt(rand.nextInt(26)));
-                new_carac = new_carac.toUpperCase();
-            }
-            else if (i==2){
-                new_carac = String.valueOf(rand.nextInt(0,9));
-            }
-            else {
-                new_carac = String.valueOf(list_spec.charAt(rand.nextInt(26)));
-            }
-
-            password = password + new_carac;
-            ArrayList<String> list = new ArrayList<>(Arrays.asList(password.split("/")));
-            Collections.shuffle(list);
-            password = list.toString();
-        }
-
-        return password;
+        return null;
     }
 
     public static void main(String[] args) {
@@ -201,8 +127,6 @@ public class Password {
                 System.out.println("abcdef123456  -> " + isStrongPassword("abcdef123456"));
                 System.out.println("AbCdEf123456  -> " + isStrongPassword("AbCdEf123456"));
                 System.out.println("AbCdEf 123456 -> " + isStrongPassword("AbCdEf 123456"));
-                System.out.println("AbCdEfAbcdfAbc -> " + isStrongPassword("AbCdEfAbcdfAbc"));
-                System.out.println("AbCdE12fAbcdfAbc -> " + isStrongPassword("AbCdE12fAbcdfAbc"));
                 break;
 
             case "3":
