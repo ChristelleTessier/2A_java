@@ -4,6 +4,9 @@ public class Main {
 
     public static void main(String[] args) {
 
+        // 1. Création de l'objet (Instanciation)
+        Library maBibliotheque = new Library("bibliotheque");
+
         Author tolkien = new Author("J.R.R. Tolkien", 81, "UK");
 
         Book fellowshipOfTheRing = new Book(
@@ -14,5 +17,14 @@ public class Main {
                 423);
 
         System.out.println(fellowshipOfTheRing);
+
+        // maBibliotheque.addItem(fellowshipOfTheRing);
+
+        // maBibliotheque.displayBooks();
+
+        maBibliotheque.loadBooksFromCSV("books.csv");
+
+        maBibliotheque.displayBooks();
+
     }
 }

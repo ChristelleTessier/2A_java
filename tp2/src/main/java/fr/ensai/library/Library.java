@@ -18,11 +18,19 @@ public class Library {
     private ArrayList<Book> books;
 
     /**
+     * Construit une nouveau objet.
+     */
+    public Library(String name) {
+        this.name = name;
+        this.books = new ArrayList<Book>();
+    }
+
+    /**
      * Ajoute un livre a la liste de livres books
      * 
      * @param book
      */
-    public void addIem(Book book) {
+    public void addItem(Book book) {
 
         this.books.add(book);
     }
@@ -75,7 +83,7 @@ public class Library {
                     }
                     Book book = new Book(isbn, title, author, year, pageCount);
 
-                    this.addIem(book);
+                    this.addItem(book);
                 }
             }
         } catch (
