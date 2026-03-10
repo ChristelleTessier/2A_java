@@ -18,13 +18,18 @@ public class Main {
 
         System.out.println(fellowshipOfTheRing);
 
-        // maBibliotheque.addItem(fellowshipOfTheRing);
+        maBibliotheque.addItem(fellowshipOfTheRing);
 
-        // maBibliotheque.displayBooks();
-
+        // ajout des livres du fichier csv
         maBibliotheque.loadBooksFromCSV("books.csv");
 
-        maBibliotheque.displayBooks();
+        // creation de deux magazines
+        Magazine mag1 = new Magazine("National Geographic", 2024, 96, "0027-9358", "Janvier");
+        maBibliotheque.addItem(mag1);
+        Magazine mag2 = new Magazine("The Economist", 2023, 80, "0013-0613", "Vol. 448");
+        maBibliotheque.addItem(mag2);
+        
+        maBibliotheque.displayItems();
 
     }
 }

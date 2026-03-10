@@ -1,26 +1,26 @@
 package fr.ensai.library;
 
+
 /**
  * Represents a book.
  */
-public class Book {
+public class Book extends Item { // On ajoute l'héritage ici
 
-    // Attributes
+    // Attributes spécifiques à Book
     private String isbn;
-    private String title;
     private Author author;
-    private int year;
-    private int pageCount;
 
     /**
      * Constructs a new Book object.
      */
     public Book(String isbn, String title, Author author, int year, int pageCount) {
+        // Appelle le constructeur de Item (la classe mère)
+        // Les attributs title, year et pageCount y sont gérés
+        super(title, year, pageCount); 
+        
+        // On initialise les attributs propres à Book
         this.isbn = isbn;
-        this.title = title;
         this.author = author;
-        this.year = year;
-        this.pageCount = pageCount;
     }
 
     public Author getAuthor() {

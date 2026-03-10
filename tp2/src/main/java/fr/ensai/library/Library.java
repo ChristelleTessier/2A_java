@@ -15,35 +15,35 @@ public class Library {
 
     // Attributes
     private String name;
-    private ArrayList<Book> books;
+    private ArrayList<Item> items;
 
     /**
      * Construit une nouveau objet.
      */
     public Library(String name) {
         this.name = name;
-        this.books = new ArrayList<Book>();
+        this.items = new ArrayList<Item>();
     }
 
     /**
      * Ajoute un livre a la liste de livres books
      * 
-     * @param book
+     * @param item
      */
-    public void addItem(Book book) {
+    public void addItem(Item item) {
 
-        this.books.add(book);
+        this.items.add(item);
     }
 
     /**
      * Affiche tous les livres
      */
-    public void displayBooks() {
-        if (this.books.isEmpty()) {
+    public void displayItems() {
+        if (this.items.isEmpty()) {
             System.out.println("Bibliothèque vide");
         } else {
-            for (Book book : books) {
-                System.out.println(book.toString());
+            for (Item item : items) {
+                System.out.println(item.toString());
             }
         }
     }
