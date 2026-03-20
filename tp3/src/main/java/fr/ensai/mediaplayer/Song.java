@@ -1,36 +1,26 @@
 package fr.ensai.mediaplayer;
 
+import java.util.Objects;
+
 /**
  * Represents a song with essential attributes.
  */
-public class Song {
-    private String singer;
-    private String title;
-    private int year;
-    private int duration;
+public class Song extends Media {
+    private Artist singer;
+    private Artist composer;
     private String lyrics;
-    private String author;
-    private String composer;
 
     /**
      * Constructs a new Song object.
      *
-     * @param title    The title of the song.
      * @param singer   The singer of the song.
-     * @param title    The title of the song.
-     * @param year     The year the song was released.
-     * @param duration The duration of the song in seconds.
-     * @param lyrics   The lyrics of the song.
-     * @param author   The author of the song.
      * @param composer The composer of the song.
      */
-    public Song(String title, String singer, int year, int duration, String lyrics, String author, String composer) {
-        this.title = title;
+    public Song(String title, Artist singer, int year, int duration, String lyrics, Artist author, Artist composer) {
+        super(title, author, year, duration, lyrics);
+
         this.singer = singer;
-        this.year = year;
-        this.duration = duration;
         this.lyrics = lyrics;
-        this.author = author;
         this.composer = composer;
     }
 
@@ -63,4 +53,22 @@ public class Song {
         return Objects.hash(this.title, this.singer, this.year);
     }
 
+    public void play() {
+
+        if (this.lyrics == null || this.lyrics.isEmpty() ){
+            System.out.println("Les paroles sont vides");
+        }
+        else {
+            String[] mots = this.lyrics.split(" ");
+            for (String mot : mots) {
+            System.out.print(mot + " "); 
+            try {
+                Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    System.err.println("Thread was interrupted");
+                }
+            }
+        }
+    }
 }
