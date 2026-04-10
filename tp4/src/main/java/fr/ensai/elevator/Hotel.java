@@ -7,6 +7,8 @@ public class Hotel {
     private List<Floor> floors;
     private List<Elevator> elevators;
     private int deliveredPassengers;
+    /* Affichage téléportation */
+    private String messageTeleportation = "";
 
     /**
      * Constructs a hotel with the given floors and elevators.
@@ -28,11 +30,24 @@ public class Hotel {
      * <li>Loads waiting passengers if capacity allows</li>
      */
     public void update() {
+        /* Réintialisation de téléportation */
+        this.messageTeleportation = "";
+
         for (Elevator e : this.elevators) {
             e.move();
         }
         for (Elevator e : this.elevators) {
             Floor currentFloor = this.floors.get(e.getCurrentFloor());
+            if (e instanceof CrazyElevator crazy) {
+                /* Vérification si ascenseur fou 
+                Appel fonction getVictimesStr  */
+                
+                String victimes = crazy.getVictimesStr(); 
+                if (!victimes.isEmpty()) {
+                    this.messageTeleportation = "ALERTE : Les passagers [" + victimes + 
+                                               "] ont été envoyés dans une autre dimension par l'ascenseur " + e.getId() + " !";
+                }
+            }
             this.deliveredPassengers += e.unloadPassengers(currentFloor);
             e.loadPassengers(currentFloor);
         }
@@ -77,5 +92,10 @@ public class Hotel {
         }
         System.out.println(horizontalBorder);
         System.out.println("Step : " + step + "\tDelivered passengers: " + deliveredPassengers);
+    
+        /* Afficahge des téléportation */
+        if (!messageTeleportation.isEmpty()) {
+            System.out.println("\n" + messageTeleportation);
+        }
     }
 }

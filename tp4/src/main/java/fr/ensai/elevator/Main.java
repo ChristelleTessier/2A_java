@@ -29,6 +29,8 @@ public class Main {
         List<Elevator> elevators = new ArrayList<>();
         elevators.add(new Elevator(1, 0, elevatorCapacity));
         elevators.add(new Elevator(2, 0, elevatorCapacity));
+        /* ajout d'un asenceur fou */
+        elevators.add(new CrazyElevator(3, 0, elevatorCapacity));
 
         Hotel hotel = new Hotel(floors, elevators);
 
