@@ -53,6 +53,10 @@ public class Elevator {
     public List<Person> getPassengers(){
         return this.passengers;
     }
+
+    public List<Integer> getListeDestination(){
+        return this.destinationQueue;
+    }
     /**
      * Checks if the elevator has the specified floor in its destination queue.
      * 
@@ -193,7 +197,8 @@ public class Elevator {
     }
 
     /**
-     * Création d'une méthode pour charger ascenseur 
+     * Création d'une méthode pour charger ascenseur
+     * Nécessaire pour test isFull() 
     **/
     public void initialisationElevator(Person client){
 
