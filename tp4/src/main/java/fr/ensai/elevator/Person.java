@@ -39,12 +39,14 @@ public class Person {
     }
 
     /**
-     * Generates a random target floor.
+     * Generates a random target floor. -> dépend du nb d'étage -> récupération du nombre max d'étage
      * 
      * @return the target floor number
      */
     private static int generateTargetFloor() {
-        return random.nextInt(4);
+        /* Récupération de la valeur et convertion de double en int */
+        int maxFloor = (int)Config.getDouble("hotel.floor.maxFloor");
+        return random.nextInt(maxFloor);
     }
 
     public String getNickname() {
