@@ -86,7 +86,7 @@ public class Floor {
         int minPerson = Config.getInt("hotel.elevator.capacity");
         int minElevator = 0;
 
-        while (!varTemp & i < nbElevator){
+        while (!varTemp && i < nbElevator){
             varTemp = elevators.get(i).containDestination(this.number);
             if (elevators.get(i).getPassengers().size() < minPerson)
                 {

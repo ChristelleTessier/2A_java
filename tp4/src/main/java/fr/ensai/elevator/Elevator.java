@@ -189,6 +189,25 @@ public class Elevator {
      * @return true si plein et false sinon
      */
     public boolean isFull(){
-        return this.capacity > this.passengers.size();
+        return this.capacity == this.passengers.size();
     }
+
+    /**
+     * Création d'une méthode pour charger ascenseur 
+    **/
+    public void initialisationElevator(Person client){
+
+        /* Récupération de la liste des client présent */
+        List<Person> listClient = this.getPassengers();
+
+        /* Ajout du nouveau client */
+        listClient.add(client);
+
+        /* Mise a jour de la liste de client */
+        this.passengers = listClient;
+
+        /* Ajout de la destination (fixer à 1 pour l'instant peut etre générée de manière aléatoire) */
+        this.addDestination(1);
+
+   }
 }
