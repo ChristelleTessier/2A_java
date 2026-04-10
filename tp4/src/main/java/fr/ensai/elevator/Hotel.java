@@ -82,8 +82,20 @@ public class Hotel {
 
         System.out.println(horizontalBorder);
         System.out.printf("| %-" + floorColWidth + "s ", "Floor");
+
+        /* Ajout de l'affichage monte et descend */
         for (Elevator elevator : this.elevators) {
-            System.out.printf("| %-" + elevatorColWidth + "s ", "Elevator" + (elevator.getId()));
+            String symbole = "-" ;
+            if (elevator.getDirection() == Direction.HAUT){
+                symbole = "↑";
+            }
+            else if (elevator.getDirection() == Direction.BAS){
+                symbole = "↓";
+            }
+
+            String labelAscenseur = "Elevator" + elevator.getId() + " " + symbole;
+            /* Mise a jour affichage*/ 
+            System.out.printf("| %-" + elevatorColWidth + "s ", labelAscenseur);
         }
         System.out.printf("| %-" + personsColWidth + "s |\n", "waitingPersons");
         System.out.println(horizontalBorder);

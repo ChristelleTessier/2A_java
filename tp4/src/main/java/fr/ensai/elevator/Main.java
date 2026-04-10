@@ -30,7 +30,7 @@ public class Main {
         elevators.add(new Elevator(1, 0, elevatorCapacity));
         elevators.add(new Elevator(2, 0, elevatorCapacity));
         /* ajout d'un asenceur fou */
-        elevators.add(new CrazyElevator(3, 0, elevatorCapacity));
+        elevators.add(new CrazyElevator(3, 0, 2));
 
         Hotel hotel = new Hotel(floors, elevators);
 

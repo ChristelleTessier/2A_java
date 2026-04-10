@@ -26,6 +26,8 @@ public class Elevator {
     private List<Person> passengers;
     private List<Person> lastUnloaded;
 
+    private Direction directionActuelle;
+
     /**
      * Constructs a new Elevator with the specified parameters.
      * 
@@ -40,8 +42,10 @@ public class Elevator {
         this.destinationQueue = new ArrayList<>();
         this.passengers = new ArrayList<>();
         this.lastUnloaded = new ArrayList<>();
+        this.directionActuelle = Direction.IMMOBILE;
     }
 
+    /* Mise en place des getter */
     public int getId() {
         return this.id;
     }
@@ -57,15 +61,6 @@ public class Elevator {
     public List<Integer> getListeDestination(){
         return this.destinationQueue;
     }
-    /**
-     * Checks if the elevator has the specified floor in its destination queue.
-     * 
-     * @param floorNumber the floor to check
-     * @return true if the floor is in the queue, false otherwise
-     */
-    public boolean containDestination(int floorNumber) {
-        return this.destinationQueue.contains(floorNumber);
-    }
 
     /**
      * Returns the size of the destination queue.
@@ -76,7 +71,8 @@ public class Elevator {
         return this.destinationQueue.size();
     }
 
-    /**
+
+        /**
      * Returns a string representation of the destination queue.
      * 
      * @return comma-separated list of floor numbers, or "-" if the queue is empty
@@ -87,6 +83,23 @@ public class Elevator {
                 .reduce((a, b) -> a + ", " + b)
                 .orElse("-");
     }
+
+    public Direction getDirection(){
+        return this.directionActuelle;
+    }
+
+    /* Méthodes propres a l'ascenseur */
+
+    /**
+     * Checks if the elevator has the specified floor in its destination queue.
+     * 
+     * @param floorNumber the floor to check
+     * @return true if the floor is in the queue, false otherwise
+     */
+    public boolean containDestination(int floorNumber) {
+        return this.destinationQueue.contains(floorNumber);
+    }
+
 
     /**
      * Adds a new floor to the destination queue if it is not already present.
@@ -155,9 +168,21 @@ public class Elevator {
      * Moves the elevator to the next floor in its destination queue.
      * Removes that floor from the queue.
      */
+
     public void move() {
-        if (!destinationQueue.isEmpty())
-            this.currentFloor = destinationQueue.removeFirst();
+        if (!getListeDestination().isEmpty()) {
+            int prochainEtage = getListeDestination().get(0);
+            
+            if (prochainEtage > this.currentFloor) {
+                this.directionActuelle = Direction.HAUT;
+            } else if (prochainEtage < currentFloor) {
+                this.directionActuelle = Direction.BAS;
+            }
+            
+            this.currentFloor = getListeDestination().removeFirst();
+        } else {
+            this.directionActuelle = Direction.IMMOBILE;
+        }
     }
 
     /**
