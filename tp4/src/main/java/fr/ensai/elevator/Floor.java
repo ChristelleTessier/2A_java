@@ -73,10 +73,34 @@ public class Floor {
      * Press the button to call the first elevator.
      * Requests the first elevator to stop at this floor.
      * 
+     * Question 2.2 : choix de l'ascenseur
+     * 
      * @param elevators the list of elevators available in the hotel
      */
     public void requestElevator(List<Elevator> elevators) {
-        elevators.get(0).addDestination(this.number);
+        int nbElevator = elevators.size();
+
+        /* Etape 1 récherche si l'étage est déja dans liste des destinations */
+        boolean varTemp = false;
+        int i = 0;
+        int minPerson = Config.getInt("hotel.elevator.capacity");
+        int minElevator = 0;
+
+        while (!varTemp & i < nbElevator){
+            varTemp = elevators.get(i).containDestination(this.number);
+            if (elevators.get(i).getPassengers().size() < minPerson)
+                {
+                    minPerson = elevators.get(i).getPassengers().size();
+                    minElevator = i;
+                }
+            /* Passage a l'ascenseur suivant */
+            i = i+1;
+        }
+
+        /* Etape 2 si ascenseur non trouvé (varTemp = false) affectation à ascenseur le moins plein */
+        if (!varTemp){
+            elevators.get(minElevator).addDestination(this.number);
+        }
     }
 
     /**
